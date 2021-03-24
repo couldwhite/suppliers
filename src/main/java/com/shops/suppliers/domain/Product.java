@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class Products {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
