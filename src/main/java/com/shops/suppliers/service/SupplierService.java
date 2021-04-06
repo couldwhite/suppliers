@@ -32,4 +32,9 @@ public class SupplierService implements SupplierServiceInterface{
     public List<Supplier> findAll() {
         return supplierRepository.findAll();
     }
+
+    @Override
+    public Supplier getByName(String name) {
+        return supplierRepository.findByName(name);
+    }
 }

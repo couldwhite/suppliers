@@ -13,4 +13,6 @@ public interface SupplierServiceInterface {
     void delete (Long id);
 
     List<Supplier> findAll();
+
+    Supplier getByName (String name);
 }

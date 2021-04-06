@@ -11,11 +11,11 @@ import java.util.List;
 public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long supplierId;
 
     private String name;
-    private Long checkingAccount;
+    private int checkingAccount;
 
-    @OneToMany
+    @OneToMany (mappedBy = "supplier")
     private List<Product> products = new ArrayList<>();
 }

@@ -1,5 +1,6 @@
 package com.shops.suppliers.rest;
 
+import com.shops.suppliers.domain.Product;
 import com.shops.suppliers.domain.Supplier;
 import com.shops.suppliers.service.SupplierServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class SupplierRestController {
     @Autowired
     private SupplierServiceInterface supplierServiceInterface;
 
-    @GetMapping (value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Supplier> getSupplier (@PathVariable("id") Long id){
+    @GetMapping (value = "{supplierId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Supplier> getSupplier (@PathVariable("supplierId") Long id){
         if (id == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -43,8 +44,8 @@ public class SupplierRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Supplier> deleteSupplier(@PathVariable("id") Long id){
+    @DeleteMapping(value = "{supplierId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Supplier> deleteSupplier(@PathVariable("supplierId") Long id){
         if (id == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -68,6 +69,7 @@ public class SupplierRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @CrossOrigin
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Supplier>> findAllSuppliers(){
         List<Supplier> suppliers = this.supplierServiceInterface.findAll();
@@ -76,6 +78,14 @@ public class SupplierRestController {
         }
 
         return new ResponseEntity<>(suppliers, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping("name/")
+    @GetMapping(params = "name", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Long findSupplierByName(@RequestParam("name") String supplierName){
+        Supplier supplier = this.supplierServiceInterface.getByName(supplierName);
+        return supplier.getSupplierId();
     }
 
 }

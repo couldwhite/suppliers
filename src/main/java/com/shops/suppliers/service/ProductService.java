@@ -32,4 +32,9 @@ public class ProductService implements ProductServiceInterface {
     public List<Product> getAll() {
         return productRepository.findAll();
     }
+
+    @Override
+    public Product getByName(String name) {
+        return this.productRepository.findByName(name);
+    }
 }

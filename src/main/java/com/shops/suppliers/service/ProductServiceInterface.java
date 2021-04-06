@@ -1,6 +1,7 @@
 package com.shops.suppliers.service;
 
 import com.shops.suppliers.domain.Product;
+import com.shops.suppliers.domain.Supplier;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ public interface ProductServiceInterface {
     void delete (Long id);
 
     List<Product> getAll();
+
+    Product getByName (String name);
 }
